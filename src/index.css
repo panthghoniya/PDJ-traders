@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@300;400;500;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-dark: #2D4F44;
+  --brand-light: #F2EDD1;
+  --brand-accent: #5BA298;
+  --brand-teal: #8ABEB7;
+  --brand-black: #1A2B25;
+  --brand-background: #FDFCF7;
+}
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  background-color: var(--brand-background);
+  color: var(--brand-dark);
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Outfit', sans-serif;
+}
+
+::selection {
+  background-color: var(--brand-accent);
+  color: white;
+}
+
+/* =========================================
+   SCROLL-TRIGGERED ANIMATION SYSTEM
+   ========================================= */
+
+/* --- Base state (hidden before animation) --- */
+[data-animate] {
+  opacity: 0;
+  transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+  transition-property: opacity, transform, filter;
+  will-change: opacity, transform;
+}
+
+/* --- Reveal types --- */
+[data-animate="fade-up"] {
+  transform: translateY(50px);
+  transition-duration: 0.8s;
+}
+
+[data-animate="fade-down"] {
+  transform: translateY(-40px);
+  transition-duration: 0.8s;
+}
+
+[data-animate="fade-left"] {
+  transform: translateX(-60px);
+  transition-duration: 0.9s;
+}
+
+[data-animate="fade-right"] {
+  transform: translateX(60px);
+  transition-duration: 0.9s;
+}
+
+[data-animate="scale-up"] {
+  transform: scale(0.88);
+  transition-duration: 0.8s;
+}
+
+[data-animate="zoom-in"] {
+  transform: scale(0.75);
+  filter: blur(4px);
+  transition-duration: 1s;
+}
+
+/* --- Animated state (visible) --- */
+[data-animate].animate-in-view {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+  filter: none;
+}
+
+/* --- Stagger delays for children --- */
+[data-delay="100"] { transition-delay: 100ms; }
+[data-delay="150"] { transition-delay: 150ms; }
+[data-delay="200"] { transition-delay: 200ms; }
+[data-delay="300"] { transition-delay: 300ms; }
+[data-delay="400"] { transition-delay: 400ms; }
+[data-delay="500"] { transition-delay: 500ms; }
+[data-delay="600"] { transition-delay: 600ms; }
+[data-delay="700"] { transition-delay: 700ms; }
+[data-delay="800"] { transition-delay: 800ms; }
+
+/* =========================================
+   SMOOTH PAGE SCROLLING & CURSOR
+   ========================================= */
+html {
+  scroll-behavior: smooth;
+}
+
+/* =========================================
+   POLISHED HOVER LIFT UTILITY
+   ========================================= */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================================
+   CODECLOVERS SUBTLE TEXT BLINK
+   ========================================= */
+@keyframes softBlink {
+  0%, 100% { color: var(--brand-accent); opacity: 1; }
+  50%       { color: #8ABEB7; opacity: 0.5; }
+}
+
+.codeclovers-blink {
+  animation: softBlink 2.5s ease-in-out infinite;
+}
