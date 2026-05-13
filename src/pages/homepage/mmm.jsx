@@ -20,18 +20,18 @@ const Mmm = () => {
             {/* Heading */}
             <h2 data-animate="fade-up" data-delay="200" className="text-4xl md:text-5xl lg:text-[3.5rem] font-medium text-brand-dark leading-[1.4] mb-8 tracking-tight font-heading">
               Navigate global 
-              <span className="inline-block align-middle w-20 h-10 md:w-28 md:h-12 mx-3 rounded-full overflow-hidden shadow-md border-2 border-white">
+              {/* <span className="inline-block align-middle w-20 h-10 md:w-28 md:h-12 mx-3 rounded-full overflow-hidden shadow-md border-2 border-white">
                 <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=300&auto=format&fit=crop" alt="ocean logistics" className="w-full h-full object-cover" />
-              </span> 
+              </span>  */}
               trade with trusted 
-              <span className="inline-flex align-middle mx-3 -space-x-3">
+              {/* <span className="inline-flex align-middle mx-3 -space-x-3">
                 <span className="inline-block w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-white shadow-md relative z-10">
                   <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150" alt="trusted partner" className="w-full h-full object-cover" />
                 </span>
                 <span className="inline-block w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-white shadow-md relative z-0">
                   <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150" alt="trusted partner" className="w-full h-full object-cover" />
                 </span>
-              </span> 
+              </span>  */}
               ocean logistics
             </h2>
 

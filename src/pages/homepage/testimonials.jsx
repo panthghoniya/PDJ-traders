@@ -1,131 +1,101 @@
-import React, { useRef } from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { Award, ShieldCheck, CheckCircle, Globe, FileCheck } from 'lucide-react';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 
-const testimonialsData = [
+const certificates = [
   {
     id: 1,
-    name: "General Manager",
-    company: "Luxury Resort",
-    image: "https://i.pinimg.com/1200x/2b/b6/3e/2bb63eb96b47d44977cf2ba77145f127.jpg",
-    review: "PDJ Trade Connect completely transformed our supply chain. Their premium salt exports and highly reliable maritime logistics have made them an indispensable partner for our operations."
+    name: "ISO 9001:2015",
+    description: "Certified Quality Management System ensuring consistent premium grade production.",
+    icon: Award,
+    logoUrl: "" // Add your certificate image URL here
   },
   {
     id: 2,
-    name: "Operations Director",
-    company: "Oceanic Trade Co.",
-    image: "https://i.pinimg.com/1200x/c5/40/3b/c5403bf27901acaecc599bb37d5099ff.jpg",
-    review: "The industrial grade salt meets all our strict parameters. We've seen increased efficiency and a significant reduction in supply bottlenecks since partnering with their team."
+    name: "FSSAI Certified",
+    description: "Compliant with the Food Safety and Standards Authority of India for food-grade salt.",
+    icon: ShieldCheck,
+    logoUrl: "" // Add your certificate image URL here
   },
   {
     id: 3,
-    name: "Head of Sourcing",
-    company: "Pure Minerals Ltd",
-    image: "https://i.pinimg.com/736x/fe/14/59/fe1459cd4e67b895d91173595be8d507.jpg",
-    review: "Finding a dependable partner for long-term international trade is rare. From ordering to customs clearance, everything was handled perfectly and delivered exactly on schedule."
+    name: "HACCP Compliance",
+    description: "Strict adherence to Hazard Analysis Critical Control Point protocols.",
+    icon: CheckCircle,
+    logoUrl: "" // Add your certificate image URL here
   },
   {
     id: 4,
-    name: "Procurement Lead",
-    company: "Global Logistics",
-    image: "https://i.pinimg.com/1200x/e8/09/8a/e8098a3d487b4fd7b8d591d7d9db32bb.jpg",
-    review: "Their transparency, competitive pricing, and unmatched product purity make them the absolute best in the industry. Highly recommended for any bulk export requirements."
+    name: "Halal Certified",
+    description: "Meeting all global dietary requirements and compliance standards.",
+    icon: Globe,
+    logoUrl: "" // Add your certificate image URL here
+  },
+  {
+    id: 5,
+    name: "GMP Standards",
+    description: "Following rigorous Good Manufacturing Practices at all our facilities.",
+    icon: FileCheck,
+    logoUrl: "" // Add your certificate image URL here
+  },
+  {
+    id: 6,
+    name: "Export House",
+    description: "Officially recognized by the Government of India as a Star Export House.",
+    icon: Award, // using Award as a fallback since CheckDecagram might not be available in older lucide
+    logoUrl: "" // Add your certificate image URL here
   }
 ];
 
-const Testimonials = () => {
-  const scrollRef = useRef(null);
+const Testimonials = () => { // Kept name as Testimonials to avoid breaking imports in other files
   const sectionRef = useScrollAnimation();
 
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      const cardWidth = scrollRef.current.firstElementChild.offsetWidth;
-      const gap = 24;
-      const scrollAmount = cardWidth + gap;
-      scrollRef.current.scrollBy({ 
-        left: direction === 'next' ? scrollAmount : -scrollAmount, 
-        behavior: 'smooth' 
-      });
-    }
-  };
-
   return (
-    <section ref={sectionRef} className="py-24 md:py-32 bg-brand-background overflow-hidden relative z-40">
+    <section ref={sectionRef} className="py-24 md:py-32 bg-brand-background overflow-hidden relative z-40 border-t border-brand-dark/5">
       <div className="max-w-[110rem] mx-auto px-6 md:px-10">
         
         {/* Header Area */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
-          <div>
-            <p data-animate="fade-up" className="text-sm font-semibold text-brand-dark mb-2">Testimonials</p>
-            <h2 data-animate="fade-up" data-delay="150" className="text-4xl md:text-5xl lg:text-[3.5rem] font-heading font-medium text-brand-dark tracking-tight leading-none">
-              What our Clients Say
-            </h2>
+        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
+          <div data-animate="scale-up" className="inline-flex items-center justify-center p-4 bg-white rounded-2xl mb-6 shadow-sm border border-brand-dark/5">
+            <Award className="w-8 h-8 text-brand-accent" />
           </div>
-
-          {/* Navigation Buttons */}
-          <div data-animate="fade-left" data-delay="300" className="flex items-center gap-4">
-            <button 
-              onClick={() => scroll('prev')}
-              className="px-6 py-2.5 rounded-xl bg-brand-accent hover:bg-brand-dark flex items-center gap-2 text-white text-sm font-medium transition-all shadow-sm"
-            >
-              <ArrowLeft className="w-4 h-4 text-white" /> Previous
-            </button>
-            <button 
-              onClick={() => scroll('next')}
-              className="px-6 py-2.5 rounded-xl bg-brand-dark hover:bg-brand-accent flex items-center gap-2 text-white text-sm font-medium transition-all shadow-sm"
-            >
-              Next <ArrowRight className="w-4 h-4 text-white" />
-            </button>
-          </div>
+          <h2 data-animate="fade-up" data-delay="100" className="text-4xl md:text-5xl lg:text-[3.5rem] font-heading font-bold text-brand-dark tracking-tight leading-tight mb-6">
+            Global <span className="text-brand-accent">Certifications</span>
+          </h2>
+          <p data-animate="fade-up" data-delay="200" className="text-lg text-brand-dark/60 leading-relaxed">
+            Our commitment to unmatched quality and absolute safety is backed by globally recognized certifications and strict international compliance standards.
+          </p>
         </div>
 
-      </div>
-
-      {/* Slider Track */}
-      <div data-animate="fade-up" data-delay="300" className="pl-6 md:pl-10 max-w-[110rem] mx-auto pb-8">
-        <div 
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-10 -mb-10 pr-6 md:pr-10"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {testimonialsData.map((testimonial) => (
+        {/* Certificates Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {certificates.map((cert, index) => (
             <div 
-              key={testimonial.id}
-              className="flex-shrink-0 w-[90vw] md:w-[75vw] lg:w-[60vw] xl:w-[900px] snap-center md:snap-start"
+              key={cert.id}
+              data-animate="fade-up"
+              data-delay={100 * (index + 1)}
+              className="group bg-white rounded-3xl p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-2 border border-brand-dark/5 flex flex-col items-center text-center cursor-pointer"
             >
-              <div className="bg-white rounded-[2rem] p-3 flex flex-col md:flex-row h-full min-h-[400px] shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover-lift transition-all duration-500">
-                
-                {/* Left Content (Text) */}
-                <div className="w-full md:w-1/2 flex flex-col justify-between p-6 md:p-10 lg:p-12">
-                  <p className="text-brand-dark text-lg md:text-xl leading-relaxed font-light mb-10 tracking-wide">
-                    {testimonial.review}
-                  </p>
-                  <div>
-                    <h4 className="font-semibold text-brand-dark text-lg">{testimonial.name}</h4>
-                    <p className="text-brand-dark/50 text-sm mt-1">{testimonial.company}</p>
-                  </div>
-                </div>
-                
-                {/* Right Content (Image) */}
-                <div className="w-full md:w-1/2 h-[300px] md:h-auto rounded-[1.5rem] overflow-hidden relative">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.name} 
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                  />
-                </div>
-
+              {/* Logo/Icon Container */}
+              <div className="w-24 h-24 md:w-32 md:h-32 bg-brand-background rounded-full flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-inner border border-brand-dark/5">
+                {cert.logoUrl ? (
+                  <img src={cert.logoUrl} alt={cert.name} className="w-3/4 h-3/4 object-contain" />
+                ) : (
+                  <cert.icon className="w-10 h-10 md:w-12 md:h-12 text-brand-accent" strokeWidth={1.5} />
+                )}
               </div>
+              
+              <h3 className="text-2xl font-bold font-heading text-brand-dark mb-3 group-hover:text-brand-accent transition-colors">
+                {cert.name}
+              </h3>
+              <p className="text-brand-dark/60 leading-relaxed">
+                {cert.description}
+              </p>
             </div>
           ))}
         </div>
-      </div>
 
-      <style dangerouslySetInnerHTML={{ __html: `
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}} />
+      </div>
     </section>
   );
 };

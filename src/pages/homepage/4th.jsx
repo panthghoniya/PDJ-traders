@@ -78,7 +78,7 @@ const Fourth = () => {
   };
 
   return (
-    <section ref={ref} className="relative lg:sticky lg:top-0 z-30 py-24 md:py-32 bg-brand-background overflow-hidden h-screen flex items-center">
+    <section ref={ref} className="relative lg:sticky lg:top-0 z-30 py-16 md:py-24 lg:py-32 bg-brand-background lg:overflow-hidden lg:h-screen flex items-center">
       <div className="max-w-[110rem] mx-auto px-6 md:px-10 w-full">
         
         {/* Header Section */}

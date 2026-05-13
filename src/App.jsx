@@ -1,11 +1,18 @@
 import React from 'react';
-import Navbar from './common components/layout/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './pages/homepage/homepage';
+import AboutUs from './pages/homepage/Aboutus/aboutus';
+
 function App() {
   return (
-    <div className="bg-brand-background min-h-screen text-brand-dark font-sans antialiased">
-      <Homepage />
-    </div>
+    <Router>
+      <div className="bg-brand-background min-h-screen text-brand-dark font-sans antialiased">
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/about" element={<AboutUs />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
