@@ -113,7 +113,7 @@ const Footer = () => {
           {/* The HUGE Text */}
           <div className="w-full relative overflow-hidden flex justify-center pt-10 pb-6">
             <h1 
-              className="hidden text-[9vw] sm:text-[9.5vw] md:text-[10vw] font-sans font-black leading-none tracking-[-0.04em] whitespace-nowrap select-none uppercase text-white/[0.08] transform scale-y-[1.4] origin-bottom transition-all duration-300"
+              className="hidden md:block sm:text-[9vw] sm:text-[9.5vw] md:text-[10vw] font-sans font-black leading-none tracking-[-0.04em] whitespace-nowrap select-none uppercase text-white/[0.08] transform scale-y-[1.4] origin-bottom transition-all duration-300"
               style={{ letterSpacing: '-0.50rem' }}
             >
               PDJ TRADE CONNECT
