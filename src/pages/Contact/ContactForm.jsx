@@ -1,0 +1,224 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { Send, ChevronDown, Search } from 'lucide-react';
+import useScrollAnimation from '../../hooks/useScrollAnimation';
+
+
+const ContactForm = () => {
+  const ref = useScrollAnimation();
+  const [isSubjectOpen, setIsSubjectOpen] = useState(false);
+  const [selectedSubject, setSelectedSubject] = useState('');
+  const [isCountryOpen, setIsCountryOpen] = useState(false);
+  const [countrySearchQuery, setCountrySearchQuery] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState('');
+  const subjectDropdownRef = useRef(null);
+  const countryDropdownRef = useRef(null);
+
+  const countries = [
+    "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
+    "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi",
+    "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic",
+    "Denmark", "Djibouti", "Dominica", "Dominican Republic",
+    "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia",
+    "Fiji", "Finland", "France",
+    "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana",
+    "Haiti", "Honduras", "Hungary",
+    "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy",
+    "Jamaica", "Japan", "Jordan",
+    "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan",
+    "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg",
+    "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar",
+    "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway",
+    "Oman",
+    "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal",
+    "Qatar",
+    "Romania", "Russia", "Rwanda",
+    "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria",
+    "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu",
+    "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan",
+    "Vanuatu", "Vatican City", "Venezuela", "Vietnam",
+    "Yemen",
+    "Zambia", "Zimbabwe"
+  ];
+
+  const filteredCountries = countries.filter(country => 
+    country.toLowerCase().includes(countrySearchQuery.toLowerCase())
+  );
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (countryDropdownRef.current && !countryDropdownRef.current.contains(event.target)) {
+        setIsCountryOpen(false);
+      }
+      if (subjectDropdownRef.current && !subjectDropdownRef.current.contains(event.target)) {
+        setIsSubjectOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div id="contact-form" ref={ref} className="relative bg-brand-background text-brand-dark pt-10 md:pt-20 pb-12 md:pb-16 overflow-hidden px-6 md:px-10">
+      
+      {/* Background decorations */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(45,79,68,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(45,79,68,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] opacity-50 pointer-events-none z-0"></div>
+
+      <div className="max-w-[110rem] mx-auto relative z-10">
+        
+        {/* Form and Map Container */}
+        <div className="w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          
+          {/* Left Column: Form */}
+          <div data-animate="fade-right" data-delay="100">
+            <h3 className="text-brand-accent font-bold tracking-[0.2em] uppercase text-sm mb-4">
+              Contact Us
+            </h3>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-black leading-[1.1] mb-12 tracking-[2px] uppercase">
+              LET'S GET IN TOUCH <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-teal">
+                SEND MESSAGE.
+              </span>
+            </h2>
+
+            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+                <input 
+                  type="text" 
+                  placeholder="Your Name" 
+                  className="w-full bg-brand-dark/5 border border-brand-dark/20 rounded-xl px-6 py-4 text-brand-dark placeholder:text-brand-dark/50 focus:outline-none focus:border-brand-accent focus:bg-brand-dark/10 transition-all duration-300 font-light"
+                />
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input 
+                  type="tel" 
+                  placeholder="Your Number" 
+                  className="w-full bg-brand-dark/5 border border-brand-dark/20 rounded-xl px-6 py-4 text-brand-dark placeholder:text-brand-dark/50 focus:outline-none focus:border-brand-accent focus:bg-brand-dark/10 transition-all duration-300 font-light"
+                />
+                <div className="relative" ref={subjectDropdownRef}>
+                  <div 
+                    onClick={() => setIsSubjectOpen(!isSubjectOpen)}
+                    className="w-full bg-brand-dark/5 border border-brand-dark/20 rounded-xl px-6 py-4 text-brand-dark flex justify-between items-center cursor-pointer hover:bg-brand-dark/10 transition-all duration-300"
+                  >
+                    <span className={selectedSubject ? "text-brand-dark" : "text-brand-dark/50 font-light"}>
+                      {selectedSubject || "Select Subject"}
+                    </span>
+                    <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isSubjectOpen ? 'rotate-180' : ''}`} />
+                  </div>
+
+                  {isSubjectOpen && (
+                    <div className="absolute top-full left-0 w-full mt-2 bg-white border border-brand-dark/10 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                      {["Inquiry", "Customize Salt", "Others"].map((option) => (
+                        <div 
+                          key={option}
+                          onClick={() => {
+                            setSelectedSubject(option);
+                            setIsSubjectOpen(false);
+                          }}
+                          className="px-6 py-4 text-sm text-brand-dark hover:bg-brand-accent hover:text-white cursor-pointer transition-colors"
+                        >
+                          {option}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+                <input 
+                  type="email" 
+                  placeholder="Email Address" 
+                  className="w-full bg-brand-dark/5 border border-brand-dark/20 rounded-xl px-6 py-4 text-brand-dark placeholder:text-brand-dark/50 focus:outline-none focus:border-brand-accent focus:bg-brand-dark/10 transition-all duration-300 font-light"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-6 relative" ref={countryDropdownRef}>
+                <div 
+                  onClick={() => setIsCountryOpen(!isCountryOpen)}
+                  className="w-full bg-brand-dark/5 border border-brand-dark/20 rounded-xl px-6 py-4 text-brand-dark flex justify-between items-center cursor-pointer hover:bg-brand-dark/10 transition-all duration-300"
+                >
+                  <span className={selectedCountry ? "text-brand-dark" : "text-brand-dark/50 font-light"}>
+                    {selectedCountry || "Select Country"}
+                  </span>
+                  <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isCountryOpen ? 'rotate-180' : ''}`} />
+                </div>
+
+                {isCountryOpen && (
+                  <div className="absolute top-full left-0 w-full mt-2 bg-white border border-brand-dark/10 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                    <div className="p-3 border-b border-brand-dark/5 flex items-center gap-3">
+                      <Search className="w-4 h-4 text-brand-dark/40" />
+                      <input 
+                        type="text" 
+                        placeholder="Search countries..." 
+                        value={countrySearchQuery}
+                        onChange={(e) => setCountrySearchQuery(e.target.value)}
+                        className="w-full bg-transparent outline-none text-sm text-brand-dark placeholder:text-brand-dark/30"
+                        autoFocus
+                      />
+                    </div>
+                    <div className="max-h-60 overflow-y-auto custom-scrollbar">
+                      {filteredCountries.length > 0 ? (
+                        filteredCountries.map((country) => (
+                          <div 
+                            key={country}
+                            onClick={() => {
+                              setSelectedCountry(country);
+                              setIsCountryOpen(false);
+                              setCountrySearchQuery('');
+                            }}
+                            className="px-6 py-3 text-sm text-brand-dark hover:bg-brand-accent hover:text-white cursor-pointer transition-colors"
+                          >
+                            {country}
+                          </div>
+                        ))
+                      ) : (
+                        <div className="px-6 py-3 text-sm text-brand-dark/40 italic text-center">
+                          No countries found
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+                <textarea 
+                  placeholder="Message" 
+                  rows="5"
+                  className="w-full bg-brand-dark/5 border border-brand-dark/20 rounded-xl px-6 py-4 text-brand-dark placeholder:text-brand-dark/50 focus:outline-none focus:border-brand-accent focus:bg-brand-dark/10 transition-all duration-300 font-light resize-none"
+                ></textarea>
+              </div>
+
+              <button className="group mt-4 bg-brand-accent hover:bg-brand-teal text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 flex items-center gap-3 hover:shadow-[0_0_20px_rgba(91,162,152,0.4)]">
+                Message Us
+                <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </button>
+            </form>
+          </div>
+
+          {/* Right Column: Map */}
+          <div data-animate="fade-left" data-delay="300" className="h-[400px] lg:h-[700px] rounded-3xl overflow-hidden shadow-2xl relative border border-brand-dark/10 group">
+            {/* Glass overlay on hover */}
+            <div className="absolute inset-0 bg-brand-accent/0 group-hover:bg-brand-accent/10 transition-colors duration-500 z-10 pointer-events-none"></div>
+            
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d174391.13941457172!2d10.125134!3d51.109015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a4c7c88b3bb9b7%3A0xc392bd9840212f46!2sGermany!5e0!3m2!1sen!2sus!4v1689100000000!5m2!1sen!2sus" 
+              className="absolute inset-0 w-full h-full filter grayscale contrast-125 opacity-70 group-hover:filter-none group-hover:opacity-100 transition-all duration-700 ease-in-out" 
+              style={{ border: 0 }} 
+              allowFullScreen="" 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Google Map"
+            ></iframe>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  );
+};
+
+export default ContactForm;

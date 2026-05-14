@@ -1,0 +1,40 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ChevronRight } from 'lucide-react';
+
+const ProductHero = () => {
+  return (
+    <div className="relative min-h-[80vh] w-full flex flex-col justify-center overflow-hidden bg-brand-dark text-brand-light">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('https://i.pinimg.com/1200x/62/82/1c/62821c9eeacab021b1ee2f7e928154ca.jpg')" }}
+      ></div>
+      
+      {/* Subtle Dark/Green Overlay */}
+      <div className="absolute inset-0 bg-brand-dark/40 z-0"></div>
+      
+      {/* Seamless Transition Gradients */}
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-brand-background to-transparent z-0 pointer-events-none" />
+      
+      {/* Content */}
+      <div className="max-w-[110rem] mx-auto px-6 md:px-10 relative z-20 text-center flex flex-col items-center mt-20">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-heading mb-6 tracking-tight animate-in fade-in slide-in-from-bottom-8 duration-700">
+          <span className="text-white">Our</span> <span className="text-brand-dark">Products</span>
+        </h1>
+        <p className="text-lg md:text-xl text-white/80 max-w-2xl font-light mb-10 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
+          Discover our premium range of salt products, refined to perfection for culinary, industrial, and therapeutic excellence.
+        </p>
+
+        {/* Breadcrumb */}
+        <div className="flex items-center gap-3 text-sm md:text-base font-medium animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
+          <Link to="/" className="text-white/60 hover:text-brand-accent transition-colors">Home</Link>
+          <ChevronRight className="w-4 h-4 text-white/40" />
+          <span className="text-brand-dark">Products</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProductHero;

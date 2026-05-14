@@ -1,0 +1,27 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Homepage from './pages/homepage/homepage';
+import AboutUs from './pages/Aboutus/aboutus';
+import Contact from './pages/Contact/contact';
+import Innerproduct from './pages/homepage/Innerproduct';
+import Gallery from './pages/Gallery/gallery';
+import ProductListing from './pages/Product/product';
+
+function App() {
+  return (
+    <Router>
+      <div className="bg-brand-background min-h-screen text-brand-dark font-sans antialiased">
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/product" element={<ProductListing />} />
+          <Route path="/product/:id" element={<Innerproduct />} />
+          <Route path="/gallery" element={<Gallery />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
