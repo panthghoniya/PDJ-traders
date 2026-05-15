@@ -87,9 +87,17 @@ const Fourth = () => {
           <h2 data-animate="fade-left" className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-brand-dark font-heading leading-tight max-w-2xl tracking-tight">
             Our Global Export <br /> Catalogue 2024
           </h2>
-          <p data-animate="fade-right" data-delay="200" className="text-brand-dark/60 font-medium max-w-sm text-sm md:text-base leading-relaxed">
-            Premium quality salt logistics and export globally. Trusted by 50+ countries for pure Himalayan and Sea Salt.
-          </p>
+          <Link 
+            to="/product" 
+            data-animate="fade-right" 
+            data-delay="200"
+            className="group flex items-center gap-4 bg-brand-dark hover:bg-brand-accent text-white pl-8 pr-2 py-2 rounded-full transition-all duration-500 shadow-xl hover:shadow-[0_10px_30px_rgba(91,162,152,0.3)] hover:-translate-y-1 flex-shrink-0"
+          >
+            <span className="font-bold tracking-widest uppercase text-sm">Explore More</span>
+            <div className="bg-white/10 p-3 rounded-full group-hover:bg-white/20 transition-colors">
+              <ArrowRight size={20} className="transition-transform duration-500 group-hover:translate-x-1" />
+            </div>
+          </Link>
         </div>
 
         {/* Slider Section */}

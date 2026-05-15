@@ -6,10 +6,12 @@ import Contact from './pages/Contact/contact';
 import Innerproduct from './pages/homepage/Innerproduct';
 import Gallery from './pages/Gallery/gallery';
 import ProductListing from './pages/Product/product';
+import ScrollToTop from './common components/layout/ScrollToTop';
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="bg-brand-background min-h-screen text-brand-dark font-sans antialiased">
         <Routes>
           <Route path="/" element={<Homepage />} />

@@ -4,8 +4,8 @@ import Mmm from './mmm';
 import Fourth from './4th';
 import Customization from './Customization';
 import Fifth from './5th';
-import LogoSection from './logosection';
-import Testimonials from './testimonials';
+import LogoSection from './country';
+import Testimonials from './certificate';
 import Footer from '../../common components/layout/footer';
 
 const homepage = () => {

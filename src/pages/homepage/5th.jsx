@@ -1,5 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import manprocessing from "../../assets/man processing salt.png"
+import manpurify from "../../assets/man purify.png"
+import manwithsalt from "../../assets/man with salt.png"
+
 
 const Manufacturer = () => {
     const sectionRef = useRef(null);
@@ -11,19 +15,19 @@ const Manufacturer = () => {
             id: 1,
             title: "Premium Salt Extraction",
             description: "Advanced extraction techniques ensuring 99.9% purity and natural mineral preservation.",
-            image: "https://i.pinimg.com/1200x/21/0c/55/210c55492f8d4b86b57a9cff76cefb59.jpg"
+            image: manprocessing
         },
         {
             id: 2,
             title: "Global Export Network",
             description: "Seamless logistics connecting our Indian facilities to major ports in 50+ countries.",
-            image: "https://i.pinimg.com/1200x/4b/c2/af/4bc2af851d41e7212c5dfccb028b2776.jpg"
+            image: manwithsalt
         },
         {
             id: 3,
             title: "Industrial Grade Quality",
             description: "Meeting rigorous international standards for food grade and industrial salt requirements.",
-            image: "https://i.pinimg.com/736x/89/1b/bb/891bbbcc9169f8532e331626cf2d3d2a.jpg"
+            image: manpurify
         }
     ];
 

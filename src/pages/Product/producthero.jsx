@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
+import factory from '../../assets/factory.png';
 
 const ProductHero = () => {
   return (
@@ -8,7 +9,7 @@ const ProductHero = () => {
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('https://i.pinimg.com/1200x/62/82/1c/62821c9eeacab021b1ee2f7e928154ca.jpg')" }}
+        style={{ backgroundImage: `url(${factory})` }}
       ></div>
       
       {/* Subtle Dark/Green Overlay */}

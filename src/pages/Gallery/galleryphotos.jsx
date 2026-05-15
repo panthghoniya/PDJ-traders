@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
+import godown from "../../assets/godown.png"
+
 
 const photos = [
   // Block 1
@@ -11,7 +13,7 @@ const photos = [
   },
   {
     id: 2,
-    image: "https://i.pinimg.com/1200x/94/32/25/943225be170d66019f628cc496e56f0e.jpg",
+    image: godown,
     name: "Refined Sea Salt",
     span: "col-span-1 md:col-span-2 lg:col-span-2 row-span-1"
   },

@@ -35,10 +35,10 @@ const Navbar = () => {
           
             <div className="flex flex-col justify-center min-w-0">
               <span className={`font-bold text-[13px] sm:text-lg md:text-xl tracking-tight font-heading transition-colors duration-300 leading-tight truncate ${isSolid || isMobileMenuOpen ? 'text-brand-dark' : 'text-white'}`}>
-                PDJ <span className="tracking-wider">TRADE</span> CONNECT
+                PDJ <span className="tracking-wider"> TRADE</span> CONNECT
               </span>
               
-              <h5 className={`block text-[8px] sm:text-xs md:text-sm mt-0.5 transition-colors duration-300 opacity-90 leading-tight truncate ${isSolid || isMobileMenuOpen ? 'text-[#2D4F44]' : 'text-white'}`}>
+              <h5 className={`block text-[8px] sm:text-xs md:text-sm mt-0.5 transition-colors duration-300 opacity-90 leading-tight truncate font-literata font-medium italic ${isSolid || isMobileMenuOpen ? 'text-[#2D4F44]' : 'text-white'}`}>
                 Connecting Global Market with Quality
               </h5>
             </div>
