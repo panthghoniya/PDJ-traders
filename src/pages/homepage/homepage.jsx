@@ -6,6 +6,7 @@ import Customization from './Customization';
 import Fifth from './5th';
 import LogoSection from './country';
 import Testimonials from './certificate';
+import FAQ from './FAQ';
 import Footer from '../../common components/layout/footer';
 
 const homepage = () => {
@@ -18,6 +19,7 @@ const homepage = () => {
             <Fifth />
             <LogoSection />
             <Testimonials />
+            <FAQ />
             <Footer />
         </>
     );

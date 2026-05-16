@@ -1,175 +1,146 @@
-import React from 'react';
-import FlowArt, { FlowSection } from '../../components/ui/story-scroll';
-
+import React, { useEffect, useRef } from 'react';
+import { Sparkles, UserCheck, Zap, ShieldCheck } from 'lucide-react';
+import saltImg from '../../assets/man with salt.png';
 
 export default function Story() {
+  const starRef = useRef(null);
+
+  // Scroll-based rotation for the asterisk
+  useEffect(() => {
+    const handleScroll = () => {
+      if (starRef.current) {
+        const rotation = window.scrollY * 0.15;
+        starRef.current.style.transform = `rotate(${rotation}deg)`;
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div id="about">
-      
-      <FlowArt aria-label="PDJ Trade Connect Story">
-      
-      {/* 1. About Us */}
-      <FlowSection aria-label="About Us" style={{ backgroundColor: '#2D4F44', color: '#F2EDD1' }}>
-        <p className="text-xs font-bold uppercase tracking-[0.2em] opacity-80">01 — About Us</p>
-        <hr className="my-[2vw] border-none border-t border-[#F2EDD1]/40 opacity-100" />
-        <div>
-          <h1
-            className="text-[clamp(3.5rem,12vw,14rem)] font-heading font-black leading-[0.85] uppercase tracking-tight"
-          >
-            About
-            <br />
-            Us
-          </h1>
-        </div>
-        <hr className="my-[2vw] border-none border-t border-[#F2EDD1]/40 opacity-100" />
-        <p className="mt-auto max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-light leading-relaxed">
-          We believe global trade deserves a partner that puts quality first. No compromises, no
-          delays — just pure premium salt and the industries that rely on it.
-        </p>
-      </FlowSection>
+    <section id="why-choose-us" className="relative w-full bg-[#FDFCF7] py-20 lg:py-32 overflow-hidden">
 
-      {/* 2. Our Story */}
-      <FlowSection aria-label="Our Story" style={{ backgroundColor: '#1A2B25', color: '#fff' }}>
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">02 — Our Story</p>
-        <hr className="my-[2vw] border-none border-t border-brand-accent/40" />
-        <div>
-          <h2
-            className="text-[clamp(3.5rem,12vw,14rem)] font-heading font-black leading-[0.85] uppercase tracking-tight"
-          >
-            Our
-            <br />
-            Story
-          </h2>
-        </div>
-        <hr className="my-[2vw] border-none border-t border-brand-accent/40" />
-        <p className="max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-light leading-relaxed">
-          From our first extraction to becoming a global export leader. We're rewriting the rules of how premium salt gets extracted, refined, and distributed worldwide.
-        </p>
-        <hr className="my-[2vw] border-none border-t border-brand-accent/40" />
-        <div className="flex flex-wrap gap-[3vw]">
-          <div className="min-w-[180px] flex-1">
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider text-brand-accent">Humble Beginnings</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] font-light leading-relaxed opacity-75">
-              Started with a vision to provide the purest salt, growing steadily through unmatched dedication.
-            </p>
-          </div>
-          <div className="min-w-[180px] flex-1">
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider text-brand-accent">Rapid Expansion</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] font-light leading-relaxed opacity-75">
-              Expanded our Indian facilities to connect with major ports across 50+ countries globally.
-            </p>
-          </div>
-          <div className="min-w-[180px] flex-1">
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider text-brand-accent">Future Forward</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] font-light leading-relaxed opacity-75">
-              Continuously innovating our supply chain to ensure fair pricing and transparent operations.
-            </p>
-          </div>
-        </div>
-      </FlowSection>
+      {/* Background ambient light */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-brand-accent/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-      {/* 3. Why Choose Us */}
-      <FlowSection aria-label="Why Choose Us" style={{ backgroundColor: '#FDFCF7', color: '#1A2B25' }}>
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">03 — Why Choose Us</p>
-        <hr className="my-[2vw] border-none border-t border-[#1A2B25]/20" />
-        <div>
-          <h2
-            className="text-[clamp(3.5rem,12vw,14rem)] font-heading font-black leading-[0.85] uppercase tracking-tight text-brand-dark"
-          >
-            Why
-            <br />
-            Choose
-            <br />
-            Us
-          </h2>
-        </div>
-        <hr className="my-[2vw] border-none border-t border-[#1A2B25]/20" />
-        <p className="max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-medium leading-relaxed">
-          Three reasons why we lead the market. Zero complexity. Your supply chain starts moving the moment you partner with us.
-        </p>
-        <hr className="my-[2vw] border-none border-t border-[#1A2B25]/20" />
-        <div className="flex flex-wrap gap-[3vw]">
-          <div className="min-w-[180px] flex-1">
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider text-brand-accent">01 — Pure Quality</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75 font-medium">
-              We extract raw salt from the finest pristine reserves, ensuring 99.9% purity in every batch.
-            </p>
-          </div>
-          <div className="min-w-[180px] flex-1">
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider text-brand-accent">02 — Global Reach</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75 font-medium">
-              Our massive ocean freight network delivers bulk quantities securely to your nearest port.
-            </p>
-          </div>
-          <div className="min-w-[180px] flex-1">
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider text-brand-accent">03 — Sustainable</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75 font-medium">
-              Eco-friendly extraction and processing that respects the environment while meeting demand.
-            </p>
-          </div>
-        </div>
-      </FlowSection>
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+        <div className="flex flex-col lg:flex-row items-stretch gap-12 lg:gap-20">
 
-      {/* 4. Our Speciality */}
-      <FlowSection aria-label="Our Speciality" style={{ backgroundColor: '#5BA298', color: '#1A2B25' }}>
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#FDFCF7]">04 — Our Speciality</p>
-        <hr className="my-[2vw] border-none border-t border-[#1A2B25]/20" />
-        <div>
-          <h2
-            className="text-[clamp(3.5rem,12vw,14rem)] font-heading font-black leading-[0.85] uppercase tracking-tight text-[#FDFCF7]"
-          >
-            Our
-            <br />
-            Speciality
-          </h2>
-        </div>
-        <hr className="my-[2vw] border-none border-t border-[#1A2B25]/20" />
-        <p className="max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-medium leading-relaxed">
-          We specialize in processing and exporting the highest grade of salt for both industrial applications and human consumption.
-        </p>
-        <hr className="my-[2vw] border-none border-t border-[#1A2B25]/20" />
-        <div className="flex flex-wrap gap-[3vw]">
-          <div className="min-w-[180px] flex-1">
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Food Grade</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] font-medium leading-relaxed opacity-80">
-              Refined, iodized, and pure. Meeting strict global dietary requirements.
-            </p>
-          </div>
-          <div className="min-w-[180px] flex-1">
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Industrial Grade</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] font-medium leading-relaxed opacity-80">
-              Perfectly processed for chemical, manufacturing, and de-icing applications.
-            </p>
-          </div>
-          <div className="min-w-[180px] flex-1">
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Raw Crystals</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] font-medium leading-relaxed opacity-80">
-              Unprocessed, mineral-rich raw salt directly from pristine salt pans.
-            </p>
-          </div>
-        </div>
-      </FlowSection>
+          {/* Left Content */}
+          <div className="flex-1 w-full order-2 lg:order-1 flex flex-col justify-center">
+            <div className="mb-10">
+              <span className="inline-block py-1 px-3 rounded-full bg-[#2D4F44]/10 border border-[#2D4F44]/20 text-[#2D4F44] font-bold tracking-widest uppercase text-xs mb-4">
+                Our Story
+              </span>
+              {/* Reduced heading font size to keep it on ~2 lines */}
+              <h3 className="text-[#2D4F44] font-heading text-[clamp(2rem,3.5vw,3.25rem)] font-black leading-[1.15] tracking-tight max-w-[18ch]">
+                Pure Salt, Perfected For Every Industry.
+              </h3>
+            </div>
 
-      {/* 5. Our Services */}
-      <FlowSection aria-label="Our Services" style={{ backgroundColor: '#1A2B25', color: '#FDFCF7' }}>
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">05 — Our Services</p>
-        <hr className="my-[2vw] border-none border-t border-[#FDFCF7]/20" />
-        <div>
-          <h2
-            className="text-[clamp(3.5rem,12vw,14rem)] font-heading font-black leading-[0.85] uppercase tracking-tight text-brand-teal"
-          >
-            Our
-            <br />
-            Services
-          </h2>
+            <div className="flex flex-col gap-6 lg:gap-8 flex-grow justify-between">
+              {/* Feature 1 */}
+              <div className="flex items-start gap-5 group cursor-default">
+                <div className="w-14 h-14 rounded-2xl bg-[#2D4F44]/10 flex items-center justify-center shrink-0 border border-[#2D4F44]/20 group-hover:bg-[#2D4F44] group-hover:scale-110 transition-all duration-300 shadow-sm">
+                  <Sparkles className="w-6 h-6 text-[#2D4F44] group-hover:text-[#FDFCF7] transition-colors" />
+                </div>
+                <div className="pt-1">
+                  <h3 className="text-[#2D4F44] text-xl font-bold mb-1 tracking-wide">Personalized Solutions</h3>
+                  <p className="text-[#2D4F44]/70 font-medium leading-relaxed max-w-md">
+                    We provide tailored salt processing for your specific industrial and culinary needs.
+                  </p>
+                </div>
+              </div>
+
+              {/* Feature 2 */}
+              <div className="flex items-start gap-5 group cursor-default">
+                <div className="w-14 h-14 rounded-2xl bg-[#2D4F44]/10 flex items-center justify-center shrink-0 border border-[#2D4F44]/20 group-hover:bg-[#2D4F44] group-hover:scale-110 transition-all duration-300 shadow-sm">
+                  <UserCheck className="w-6 h-6 text-[#2D4F44] group-hover:text-[#FDFCF7] transition-colors" />
+                </div>
+                <div className="pt-1">
+                  <h3 className="text-[#2D4F44] text-xl font-bold mb-1 tracking-wide">Global Export Experts</h3>
+                  <p className="text-[#2D4F44]/70 font-medium leading-relaxed max-w-md">
+                    Consult with our experienced team for reliable, world-class shipping and logistics.
+                  </p>
+                </div>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="flex items-start gap-5 group cursor-default">
+                <div className="w-14 h-14 rounded-2xl bg-[#2D4F44]/10 flex items-center justify-center shrink-0 border border-[#2D4F44]/20 group-hover:bg-[#2D4F44] group-hover:scale-110 transition-all duration-300 shadow-sm">
+                  <Zap className="w-6 h-6 text-[#2D4F44] group-hover:text-[#FDFCF7] transition-colors" />
+                </div>
+                <div className="pt-1">
+                  <h3 className="text-[#2D4F44] text-xl font-bold mb-1 tracking-wide">Advanced Refining</h3>
+                  <p className="text-[#2D4F44]/70 font-medium leading-relaxed max-w-md">
+                    Utilizing the latest processing and refinement equipment for unmatched 99.9% purity.
+                  </p>
+                </div>
+              </div>
+
+              {/* Feature 4 */}
+              <div className="flex items-start gap-5 group cursor-default">
+                <div className="w-14 h-14 rounded-2xl bg-[#2D4F44]/10 flex items-center justify-center shrink-0 border border-[#2D4F44]/20 group-hover:bg-[#2D4F44] group-hover:scale-110 transition-all duration-300 shadow-sm">
+                  <ShieldCheck className="w-6 h-6 text-[#2D4F44] group-hover:text-[#FDFCF7] transition-colors" />
+                </div>
+                <div className="pt-1">
+                  <h3 className="text-[#2D4F44] text-xl font-bold mb-1 tracking-wide">Holistic Supply Chain</h3>
+                  <p className="text-[#2D4F44]/70 font-medium leading-relaxed max-w-md">
+                    We manage the complete end-to-end process ensuring continuous operations for your business.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Image Container - Stretched to match left content height */}
+          <div className="flex-1 w-full order-1 lg:order-2 relative min-h-[350px] lg:min-h-0 lg:pr-16">
+            <div className="relative w-full h-full group flex justify-center lg:justify-end">
+
+              {/* Image Wrapper */}
+              <div className="relative w-full lg:max-w-[500px] h-[350px] lg:h-full">
+
+                {/* Asterisk decoration (Now scroll-based rotation) */}
+                <div
+                  ref={starRef}
+                  className="absolute -top-16 -right-16 text-[#6B7B6E] hidden md:block -z-10 will-change-transform"
+                >
+                  <svg width="180" height="180" viewBox="0 0 160 160" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(80,80)">
+                      <rect x="-12" y="-80" width="24" height="160" rx="12" />
+                      <rect x="-12" y="-80" width="24" height="160" rx="12" transform="rotate(60)" />
+                      <rect x="-12" y="-80" width="24" height="160" rx="12" transform="rotate(120)" />
+                    </g>
+                  </svg>
+                </div>
+
+                {/* The Image Card - Height 100% to match left column */}
+                <div className="relative h-full rounded-[2.5rem] overflow-hidden border border-[#2D4F44]/10 shadow-[0_20px_50px_rgba(0,0,0,0.08)] z-10 bg-white">
+                  <img
+                    src={saltImg}
+                    alt="Premium Salt Processing"
+                    className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.95] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700"
+                  />
+
+                  {/* Floating badge */}
+                  <div className="absolute bottom-6 left-6 right-6 bg-[#FDFCF7]/95 backdrop-blur-md border border-[#2D4F44]/10 rounded-2xl p-4 flex items-center gap-4 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 shadow-xl">
+                    <div className="w-12 h-12 rounded-full bg-[#2D4F44] flex items-center justify-center shrink-0">
+                      <span className="text-[#FDFCF7] font-black text-xl">100%</span>
+                    </div>
+                    <div>
+                      <h4 className="text-[#2D4F44] font-bold text-sm">Pure Quality</h4>
+                      <p className="text-[#2D4F44]/70 text-xs">Certified Export Grade</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
         </div>
-        <hr className="my-[2vw] border-none border-t border-[#FDFCF7]/20" />
-        <p className="mt-auto max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-light leading-relaxed text-[#FDFCF7]">
-          We manage the entire process—from extraction to container loading and ocean freight. Partner with PDJ Trade Connect and experience exports without limits.
-        </p>
-      </FlowSection>
-      
-    </FlowArt>
-    </div>
+      </div>
+    </section>
   );
 }

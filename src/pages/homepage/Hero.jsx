@@ -2,35 +2,36 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../../common components/layout/Navbar';
 import logo from '../../assets/logo.png';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import factory from "../../assets/factory.png"
-import dayfactory from "../../assets/dayfactory.png"
-import salttotruck from "../../assets/salt to truck.png"
+// import factory from "../../assets/factory.png"
+// import dayfactory from "../../assets/dayfactory.png"
+// import salttotruck from "../../assets/salt to truck.png"
+import factoryvideo from "../../assets/factory video.mp4"
 
 const slides = [
   {
     id: 1,
-    video: factory,
+    video: factoryvideo,
     title: "Global",
     subtitle: "Trade Solutions",
     description: "PDJ Trade Connect bridges the gap between international markets, providing seamless logistics and trade facilitation for businesses worldwide.",
     buttonText: "Our Services"
   },
-  {
-    id: 2,
-    video: dayfactory,
-    title: "Secure",
-    subtitle: "Supply Chain",
-    description: "Experience reliability with our end-to-end supply chain management. We ensure your goods reach their destination safely and on time.",
-    buttonText: "Learn More"
-  },
-  {
-    id: 3,
-    video: salttotruck,
-    title: "Connect",
-    subtitle: "Global Markets",
-    description: "Unlock new opportunities with our extensive network of global partners and trade experts committed to your business growth.",
-    buttonText: "Partner with Us"
-  }
+  // {
+  //   id: 2,
+  //   video: dayfactory,
+  //   title: "Secure",
+  //   subtitle: "Supply Chain",
+  //   description: "Experience reliability with our end-to-end supply chain management. We ensure your goods reach their destination safely and on time.",
+  //   buttonText: "Learn More"
+  // },
+  // {
+  //   id: 3,
+  //   video: salttotruck,
+  //   title: "Connect",
+  //   subtitle: "Global Markets",
+  //   description: "Unlock new opportunities with our extensive network of global partners and trade experts committed to your business growth.",
+  //   buttonText: "Partner with Us"
+  // }
 ];
 
 const Hero = () => {
@@ -56,18 +57,22 @@ const Hero = () => {
   return (
     <div className="relative min-h-screen w-full flex flex-col justify-end overflow-hidden bg-brand-black">
 
-      {/* Background Images with smooth fade transition */}
+      {/* Background Video with smooth fade transition */}
       {slides.map((s, index) => (
         <div
           key={s.id}
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-60' : 'opacity-0'
             }`}
-          style={{
-            backgroundImage: `url(${s.video})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
+        >
+          <video
+            src={s.video}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
       ))}
 
       {/* Brand-themed gradient overlay - Lightened for a cleaner look */}

@@ -16,7 +16,7 @@ const AboutHero = () => {
       <div className="absolute inset-0 bg-brand-dark/40 z-0"></div>
 
       {/* Seamless Transition Gradients */}
-      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-brand-dark to-transparent z-0 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-brand-background to-transparent z-0 pointer-events-none" />
 
       {/* Content */}
       <div className="max-w-[110rem] mx-auto px-6 md:px-10 relative z-20 text-center flex flex-col items-center mt-20">

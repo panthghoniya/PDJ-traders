@@ -1,20 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 
 const LogoSection = () => {
   const ref = useScrollAnimation();
 
-  const countries = [
-    { id: 1, name: 'UAE', bg: 'bg-white', text: 'text-brand-dark' },
-    { id: 2, name: 'SAUDI ARABIA', bg: 'bg-white', text: 'text-brand-accent' },
-    { id: 3, name: 'VIETNAM', bg: 'bg-white', text: 'text-brand-dark' },
-    { id: 4, name: 'OMAN', bg: 'bg-white', text: 'text-brand-accent' },
-    { id: 5, name: 'QATAR', bg: 'bg-brand-dark', text: 'text-brand-light' },
-    { id: 6, name: 'SOUTH AFRICA', bg: 'bg-white', text: 'text-brand-dark' },
-    { id: 7, name: 'KENYA', bg: 'bg-white', text: 'text-brand-accent' },
-    { id: 8, name: 'TANZANIA', bg: 'bg-white', text: 'text-brand-dark' },
-    { id: 9, name: 'MALAYSIA', bg: 'bg-white', text: 'text-brand-dark' },
+  const countriesData = [
+    { id: 1, name: 'UAE', code: 'AE', bg: 'bg-white', text: 'text-brand-dark' },
+    { id: 2, name: 'SAUDI ARABIA', code: 'SA', bg: 'bg-white', text: 'text-brand-accent' },
+    { id: 3, name: 'VIETNAM', code: 'VN', bg: 'bg-white', text: 'text-brand-dark' },
+    { id: 4, name: 'OMAN', code: 'OM', bg: 'bg-white', text: 'text-brand-accent' },
+    { id: 5, name: 'QATAR', code: 'QA', bg: 'bg-brand-dark', text: 'text-brand-light' },
+    { id: 6, name: 'SOUTH AFRICA', code: 'ZA', bg: 'bg-white', text: 'text-brand-dark' },
+    { id: 7, name: 'KENYA', code: 'KE', bg: 'bg-white', text: 'text-brand-accent' },
+    { id: 8, name: 'TANZANIA', code: 'TZ', bg: 'bg-white', text: 'text-brand-dark' },
+    { id: 9, name: 'MALAYSIA', code: 'MY', bg: 'bg-white', text: 'text-brand-dark' },
   ];
+
+  const [countries, setCountries] = useState(countriesData);
+
+  useEffect(() => {
+    const fetchFlags = async () => {
+      const apiKey = import.meta.env.VITE_FLAG_API_KEY;
+      const updatedCountries = await Promise.all(countriesData.map(async (c) => {
+        try {
+          const res = await fetch(`https://api.api-ninjas.com/v1/countryflag?country=${c.code}`, {
+            headers: { 'X-Api-Key': apiKey }
+          });
+          const data = await res.json();
+          return { ...c, flagUrl: data.rectangle_image_url || data.square_image_url };
+        } catch (e) {
+          console.error(`Failed to fetch flag for ${c.name}:`, e);
+          return c;
+        }
+      }));
+      setCountries(updatedCountries);
+    };
+    fetchFlags();
+  }, []);
 
   const marqueeItems = [...countries, ...countries, ...countries];
 
@@ -35,9 +57,18 @@ const LogoSection = () => {
           {marqueeItems.map((country, idx) => (
             <div
               key={`${country.id}-${idx}`}
-              className={`mx-3 md:mx-4 flex-shrink-0 w-32 h-32 md:w-40 md:h-40 rounded-2xl shadow-[0_4px_15px_rgba(0,0,0,0.04)] flex items-center justify-center ${country.bg} transition-all duration-300 hover:-translate-y-2 border border-brand-dark/5`}
+              className={`mx-3 md:mx-4 flex-shrink-0 w-32 h-32 md:w-40 md:h-40 rounded-2xl shadow-[0_4px_15px_rgba(0,0,0,0.04)] flex flex-col items-center justify-center gap-3 ${country.bg} transition-all duration-300 hover:-translate-y-2 border border-brand-dark/5`}
             >
-              <span className={`font-bold text-lg md:text-xl tracking-wider uppercase text-center px-2 whitespace-normal leading-tight ${country.text}`}>
+              {country.flagUrl ? (
+                <img 
+                  src={country.flagUrl} 
+                  alt={`${country.name} flag`} 
+                  className="w-10 h-auto md:w-12 shadow-sm rounded-sm"
+                />
+              ) : (
+                <div className="w-10 h-6 md:w-12 bg-gray-200 animate-pulse rounded-sm"></div>
+              )}
+              <span className={`font-bold text-sm md:text-base tracking-wider uppercase text-center px-2 whitespace-normal leading-tight ${country.text}`}>
                 {country.name}
               </span>
             </div>

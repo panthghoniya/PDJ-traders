@@ -48,6 +48,17 @@ const Navbar = () => {
   useEffect(() => {
     if (document.getElementById('gt-script')) return;
 
+    // Create container for Google Translate OUTSIDE of React's tree to prevent re-render issues
+    if (!document.getElementById('gt-hidden-widget')) {
+      const gtContainer = document.createElement('div');
+      gtContainer.id = 'gt-hidden-widget';
+      gtContainer.style.display = 'none';
+      gtContainer.style.visibility = 'hidden';
+      gtContainer.style.position = 'absolute';
+      gtContainer.style.top = '-9999px';
+      document.body.appendChild(gtContainer);
+    }
+
     window.googleTranslateElementInit = () => {
       new window.google.translate.TranslateElement(
         { pageLanguage: 'en', autoDisplay: false },
@@ -85,9 +96,19 @@ const Navbar = () => {
 
     const doTranslate = () => {
       const select = document.querySelector('.goog-te-combo');
-      if (!select) return;
+      if (!select) {
+        // If it's still not available, try one more time later
+        setTimeout(() => {
+          const retrySelect = document.querySelector('.goog-te-combo');
+          if (retrySelect) {
+            retrySelect.value = lang.code;
+            retrySelect.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+          }
+        }, 1000);
+        return;
+      }
       select.value = lang.code;
-      select.dispatchEvent(new Event('change'));
+      select.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
     };
 
     // Wait a tick for GT to be ready on first use
@@ -108,8 +129,6 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Hidden Google Translate widget — never visible, just functional */}
-      <div id="gt-hidden-widget" style={{ display: 'none', visibility: 'hidden', position: 'absolute', top: '-9999px' }} />
 
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -152,7 +171,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
 
             {/* Language Switcher */}
-            <div ref={langRef} className="relative">
+            <div ref={langRef} className="relative notranslate">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className={`flex items-center gap-2 px-3 py-2 rounded-full border-2 transition-all duration-300 hover:-translate-y-0.5 text-sm font-semibold font-jakarta ${
