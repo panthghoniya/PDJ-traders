@@ -14,10 +14,17 @@ export default {
           teal: '#8ABEB7',
           black: '#1A2B25',
           background: '#FDFCF7',
-        }
+        },
+      },
+      fontFamily: {
+        geist: ['"Geist Sans"', 'sans-serif'],
+        manrope: ['Manrope', 'sans-serif'],
+        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+        sora: ['Sora', 'sans-serif'],
+        clash: ['"Clash Display"', 'sans-serif'],
+        cabinet: ['"Cabinet Grotesk"', 'sans-serif'],
       }
     },
   },
   plugins: [require("tailwindcss-animate")],
 }
-

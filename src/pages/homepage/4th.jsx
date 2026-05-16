@@ -2,45 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
+import productsRaw from '../../data/products.json';
 
-const sliderData = [
-  {
-    id: 1,
-    image: "https://i.pinimg.com/1200x/b2/9d/ec/b29dec41a37c99340bfc5513f78f0a2f.jpg",
-    title: "Premium Pink Salt",
-    subtitle: "Edible Salt"
-  },
-  {
-    id: 2,
-    image: "https://i.pinimg.com/736x/21/80/47/218047f27fb25401044ecee15b701034.jpg",
-    title: "Refined Sea Salt",
-    subtitle: "Edible Salt"
-  },
-  {
-    id: 3,
-    image: "https://i.pinimg.com/1200x/16/c1/da/16c1daf5e8c88b14221b7f700060c27d.jpg",
-    title: "Industrial Salt",
-    subtitle: "Industrial Salt"
-  },
-  {
-    id: 4,
-    image: "https://i.pinimg.com/736x/f7/57/cc/f757cc26833d373cd7cbfda79231167c.jpg",
-    title: "Himalayan Bath Salt",
-    subtitle: "Bath & Spa"
-  },
-  {
-    id: 5,
-    image: "https://i.pinimg.com/736x/d5/63/c0/d563c0b03ba755a852af2ced90c826d7.jpg",
-    title: "Coarse Cooking Salt",
-    subtitle: "Edible Salt"
-  },
-  {
-    id: 6,
-    image: "https://i.pinimg.com/736x/30/ba/5c/30ba5c9546a706b52cf3977310efc52b.jpg",
-    title: "Crystal Salt Lamp",
-    subtitle: "Salt Lamps"
-  }
-];
+// Map products.json fields to what the slider needs
+const sliderData = productsRaw.map(p => ({
+  id: p.id,
+  image: p.images[0],
+  title: p.name,
+  subtitle: p.category
+}));
 
 const Fourth = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

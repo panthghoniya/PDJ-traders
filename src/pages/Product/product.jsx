@@ -4,17 +4,9 @@ import Navbar from '../../common components/layout/Navbar';
 import Footer from '../../common components/layout/footer';
 import ProductHero from './producthero';
 import { Heart, Search, ChevronDown, Filter } from 'lucide-react';
+import initialProducts from '../../data/products.json';
 
 import saltImage from '../../assets/salt.png';
-
-const initialProducts = [
-    { id: 1, name: 'Premium Pink Salt', category: 'Edible Salt', image: 'https://i.pinimg.com/1200x/b2/9d/ec/b29dec41a37c99340bfc5513f78f0a2f.jpg', badge: '-20%' },
-    { id: 2, name: 'Refined Sea Salt', category: 'Edible Salt', image: 'https://i.pinimg.com/736x/21/80/47/218047f27fb25401044ecee15b701034.jpg', badge: null },
-    { id: 3, name: 'Industrial Salt', category: 'Industrial Salt', image: 'https://i.pinimg.com/1200x/16/c1/da/16c1daf5e8c88b14221b7f700060c27d.jpg', badge: null },
-    { id: 4, name: 'Himalayan Bath Salt', category: 'Bath & Spa', image: 'https://i.pinimg.com/736x/f7/57/cc/f757cc26833d373cd7cbfda79231167c.jpg', badge: '-15%' },
-    { id: 5, name: 'Coarse Cooking Salt', category: 'Edible Salt', image: 'https://i.pinimg.com/736x/d5/63/c0/d563c0b03ba755a852af2ced90c826d7.jpg', badge: null },
-    { id: 6, name: 'Crystal Salt Lamp', category: 'Salt Lamps', image: 'https://i.pinimg.com/736x/30/ba/5c/30ba5c9546a706b52cf3977310efc52b.jpg', badge: 'New' },
-];
 
 const ProductListing = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
@@ -81,7 +73,7 @@ const ProductListing = () => {
 
                                             {/* Product Image */}
                                             <img
-                                                src={product.image}
+                                                src={product.images[0]}
                                                 alt={product.name}
                                                 className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                                             />

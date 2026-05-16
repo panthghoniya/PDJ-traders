@@ -1,79 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
-import godown from "../../assets/godown.png"
+import godown from "../../assets/godown.png";
+import photosData from "../../data/gallery.json";
 
-
-const photos = [
-  // Block 1
-  {
-    id: 1,
-    image: "https://i.pinimg.com/736x/8d/eb/95/8deb95eee44321a094e8cf6173579e04.jpg",
-    name: "Premium Pink Salt",
-    span: "col-span-1 md:col-span-2 lg:col-span-1 row-span-1 md:row-span-2"
-  },
-  {
-    id: 2,
-    image: godown,
-    name: "Refined Sea Salt",
-    span: "col-span-1 md:col-span-2 lg:col-span-2 row-span-1"
-  },
-  {
-    id: 3,
-    image: "https://i.pinimg.com/1200x/44/77/46/447746bbcac79c18537fe1cd82002cec.jpg",
-    name: "Bulk Packaging",
-    span: "col-span-1 row-span-1"
-  },
-  {
-    id: 4,
-    image: "https://i.pinimg.com/1200x/9a/96/54/9a96548a1991385c16e0b0005e705a03.jpg",
-    name: "Port Loading",
-    span: "col-span-1 row-span-1"
-  },
-  // Block 2
-  {
-    id: 5,
-    image: "https://i.pinimg.com/1200x/8e/94/34/8e9434c7e894a2322b8312b02c2ebc64.jpg",
-    name: "Global Freight",
-    span: "col-span-1 row-span-1"
-  },
-  {
-    id: 6,
-    image: "https://i.pinimg.com/736x/17/52/90/1752900c7fac0f714258c4be6ed68293.jpg",
-    name: "Distribution Network",
-    span: "col-span-1 row-span-1"
-  },
-  {
-    id: 7,
-    image: "https://i.pinimg.com/1200x/11/6d/d1/116dd1c2edf6af22f6243f030fcd50e5.jpg",
-    name: "Salt Lamps",
-    span: "col-span-1 md:col-span-2 lg:col-span-1 row-span-1 md:row-span-2"
-  },
-  {
-    id: 8,
-    image: "https://i.pinimg.com/1200x/b7/e3/25/b7e32583894f604a63ba83d2d3c343a1.jpg",
-    name: "Control Lab",
-    span: "col-span-1 md:col-span-2 lg:col-span-2 row-span-1"
-  },
-  // Block 3
-  {
-    id: 9,
-    image: "https://i.pinimg.com/736x/d6/46/7b/d6467b8e0299677ab31af948902b5417.jpg",
-    name: "Warehouse Storage",
-    span: "col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2"
-  },
-  {
-    id: 10,
-    image: "https://i.pinimg.com/736x/13/e5/56/13e556eef5d2044f98f2ea51e660de21.jpg",
-    name: "Industrial Grades",
-    span: "col-span-1 row-span-1"
-  },
-  {
-    id: 11,
-    image: "https://i.pinimg.com/1200x/8d/23/5d/8d235d1c0e7c3ee3da265366e9559206.jpg",
-    name: "Custom Lines",
-    span: "col-span-1 row-span-1"
-  }
-];
+// Resolve local assets that can't live in JSON
+const photos = photosData.map(item => ({
+  ...item,
+  image: item.image === 'godown' ? godown : item.image
+}));
 
 const GalleryPhotos = () => {
   const [selectedImg, setSelectedImg] = useState(null);

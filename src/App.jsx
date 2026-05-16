@@ -7,11 +7,13 @@ import Innerproduct from './pages/homepage/Innerproduct';
 import Gallery from './pages/Gallery/gallery';
 import ProductListing from './pages/Product/product';
 import ScrollToTop from './common components/layout/ScrollToTop';
+import FloatingButtons from './common components/layout/FloatingButtons';
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
+      <FloatingButtons />
       <div className="bg-brand-background min-h-screen text-brand-dark font-sans antialiased">
         <Routes>
           <Route path="/" element={<Homepage />} />

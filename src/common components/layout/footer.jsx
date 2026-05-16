@@ -1,23 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, ArrowUp } from 'lucide-react';
+import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 
 const Footer = () => {
   const ref = useScrollAnimation();
-  const [showBackToTop, setShowBackToTop] = useState(false);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 400);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <>
@@ -142,16 +129,6 @@ const Footer = () => {
         </div>
 
       </footer>
-
-      {/* Fixed Floating Back to Top Button — outside footer, fixed on screen */}
-      <button
-        onClick={scrollToTop}
-        aria-label="Back to top"
-        className={`fixed bottom-8 right-8 z-[999] w-14 h-14 rounded-full bg-brand-accent hover:bg-brand-dark text-white flex items-center justify-center shadow-2xl shadow-brand-accent/30 transition-all duration-500 ${showBackToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'
-          }`}
-      >
-        <ArrowUp className="w-6 h-6" />
-      </button>
     </>
   );
 };

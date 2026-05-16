@@ -1,15 +1,28 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, ChevronDown, Search } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 
 
 const ContactForm = () => {
   const ref = useScrollAnimation();
+  const [searchParams] = useSearchParams();
+
+  // Pre-fill from product inquiry query params
+  const productFromUrl = searchParams.get('product') || '';
+  const weightFromUrl = searchParams.get('weight') || '';
+  const skuFromUrl = searchParams.get('sku') || '';
+
   const [isSubjectOpen, setIsSubjectOpen] = useState(false);
-  const [selectedSubject, setSelectedSubject] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState(productFromUrl ? 'Inquiry' : '');
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [countrySearchQuery, setCountrySearchQuery] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('');
+  const [message, setMessage] = useState(
+    productFromUrl
+      ? `I am interested in the following product:\n\nProduct: ${productFromUrl}\nSKU: ${skuFromUrl}\nRequired Weight/Packaging: ${weightFromUrl}\n\nPlease provide a quote and further details.`
+      : ''
+  );
   const subjectDropdownRef = useRef(null);
   const countryDropdownRef = useRef(null);
 
@@ -43,6 +56,16 @@ const ContactForm = () => {
   const filteredCountries = countries.filter(country => 
     country.toLowerCase().includes(countrySearchQuery.toLowerCase())
   );
+
+  // Auto-scroll to form when arriving from product inquiry
+  useEffect(() => {
+    if (productFromUrl) {
+      const el = document.getElementById('contact-form');
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+      }
+    }
+  }, [productFromUrl]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -183,10 +206,27 @@ const ContactForm = () => {
                 )}
               </div>
 
+              {/* Product Inquiry Field - only shown when coming from product page */}
+              {productFromUrl && (
+                <div className="grid grid-cols-1 gap-6">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={productFromUrl}
+                      readOnly
+                      className="w-full bg-brand-accent/10 border-2 border-brand-accent/40 rounded-xl px-6 py-4 text-brand-dark font-semibold focus:outline-none cursor-default"
+                    />
+                    <span className="absolute right-5 top-1/2 -translate-y-1/2 text-[10px] font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-2 py-1 rounded-full">Product</span>
+                  </div>
+                </div>
+              )}
+
               <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-                <textarea 
-                  placeholder="Message" 
+                <textarea
+                  placeholder="Message"
                   rows="5"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   className="w-full bg-brand-dark/5 border border-brand-dark/20 rounded-xl px-6 py-4 text-brand-dark placeholder:text-brand-dark/50 focus:outline-none focus:border-brand-accent focus:bg-brand-dark/10 transition-all duration-300 font-light resize-none"
                 ></textarea>
               </div>
