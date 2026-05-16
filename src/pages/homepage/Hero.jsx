@@ -2,15 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../../common components/layout/Navbar';
 import logo from '../../assets/logo.png';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-// import factory from "../../assets/factory.png"
-// import dayfactory from "../../assets/dayfactory.png"
-// import salttotruck from "../../assets/salt to truck.png"
-import factoryvideo from "../../assets/factory video.mp4"
+import factory from "../../assets/factory.png"
 
 const slides = [
   {
     id: 1,
-    video: factoryvideo,
+    image: factory,
     title: "Global",
     subtitle: "Trade Solutions",
     description: "PDJ Trade Connect bridges the gap between international markets, providing seamless logistics and trade facilitation for businesses worldwide.",
@@ -57,19 +54,16 @@ const Hero = () => {
   return (
     <div className="relative min-h-screen w-full flex flex-col justify-end overflow-hidden bg-brand-black">
 
-      {/* Background Video with smooth fade transition */}
+      {/* Background Image with smooth fade transition */}
       {slides.map((s, index) => (
         <div
           key={s.id}
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-60' : 'opacity-0'
             }`}
         >
-          <video
-            src={s.video}
-            autoPlay
-            loop
-            muted
-            playsInline
+          <img
+            src={s.image}
+            alt="PDJ Traders Factory"
             className="w-full h-full object-cover"
           />
         </div>
