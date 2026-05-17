@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Sparkles, UserCheck, Zap, ShieldCheck } from 'lucide-react';
-import saltImg from '../../assets/man with salt.png';
+import { manWithSalt as saltImg } from '../../assets/images';
 
 export default function Story() {
   const starRef = useRef(null);

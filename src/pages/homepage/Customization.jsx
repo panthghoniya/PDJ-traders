@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Settings, Package, Droplet, Scale, X, CheckCircle2 } from 'lucide-react';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
-import logo from '../../assets/logo.png';
+import { logo } from '../../assets/images';
 
 // ============================================================================
 // CONFIGURATION: IMAGE & LOGO PATHS

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Navbar from '../../common components/layout/Navbar';
 import Footer from '../../common components/layout/footer';
@@ -6,7 +7,7 @@ import ProductHero from './producthero';
 import { Heart, Search, ChevronDown, Filter } from 'lucide-react';
 import initialProducts from '../../data/products.json';
 
-import saltImage from '../../assets/salt.png';
+import { salt as saltImage } from '../../assets/images';
 
 const ProductListing = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
@@ -17,6 +18,15 @@ const ProductListing = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Salt Products | PDJ Trade Connect — Edible & Industrial Salt India</title>
+                <meta name="description" content="Browse PDJ Trade Connect's full range of salt products — edible salt, industrial salt, Himalayan pink salt, bath salt, salt lamps. Bulk export available worldwide." />
+                <meta name="keywords" content="salt products india, edible salt buy, industrial salt catalog, Himalayan pink salt bulk, bath salt supplier, salt lamp exporter india" />
+                <link rel="canonical" href="https://pdjtrade.com/product" />
+                <meta property="og:title" content="Salt Products | PDJ Trade Connect" />
+                <meta property="og:description" content="Browse our full range — edible salt, industrial salt, Himalayan pink salt, bath salt & lamps. Bulk export available." />
+                <meta property="og:url" content="https://pdjtrade.com/product" />
+            </Helmet>
             <Navbar />
             <div className="bg-brand-background min-h-screen font-sans">
                 <ProductHero />

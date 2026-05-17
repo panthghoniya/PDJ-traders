@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
-import godown from "../../assets/godown.png";
+import { godown } from '../../assets/images';
 import photosData from "../../data/gallery.json";
 
 // Resolve local assets that can't live in JSON

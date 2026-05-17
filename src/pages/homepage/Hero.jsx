@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../common components/layout/Navbar';
-import logo from '../../assets/logo.png';
+import { logo, factory } from '../../assets/images';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import factory from "../../assets/factory.png"
+
+const HERO_VIDEO = 'https://res.cloudinary.com/dr9sn6ki9/video/upload/q_auto/v1779036733/IMG_1979_ygvbti.mp4';
 
 const slides = [
   {
@@ -54,20 +55,16 @@ const Hero = () => {
   return (
     <div className="relative min-h-screen w-full flex flex-col justify-end overflow-hidden bg-brand-black">
 
-      {/* Background Image with smooth fade transition */}
-      {slides.map((s, index) => (
-        <div
-          key={s.id}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-60' : 'opacity-0'
-            }`}
-        >
-          <img
-            src={s.image}
-            alt="PDJ Traders Factory"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      ))}
+      {/* Background Video — sirf yeh badla hai */}
+      <video
+        src={HERO_VIDEO}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover opacity-60"
+      />
 
       {/* Brand-themed gradient overlay - Lightened for a cleaner look */}
       <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/60 via-brand-dark/20 to-transparent z-0 pointer-events-none"></div>

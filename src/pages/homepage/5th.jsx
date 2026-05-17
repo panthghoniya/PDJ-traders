@@ -1,8 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
-import manprocessing from "../../assets/man processing salt.png"
-import manpurify from "../../assets/man purify.png"
-import manwithsalt from "../../assets/man with salt.png"
+import { manProcessing as manprocessing, manPurify as manpurify, manWithSalt as manwithsalt } from '../../assets/images';
 
 
 const Manufacturer = () => {

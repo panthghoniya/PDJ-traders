@@ -1,6 +1,5 @@
 import React from 'react';
-import img1 from '../../assets/factory.png';
-import img2 from '../../assets/man with salt.png';
+import { factory as img1, manWithSalt as img2 } from '../../assets/images';
 
 const ProcessSteps = [
   {

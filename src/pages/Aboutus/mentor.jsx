@@ -1,6 +1,6 @@
 import React from 'react';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
-import mentor1 from '../../assets/mentor1.png';
+import { mentor1 } from '../../assets/images';
 
 const FacebookIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">

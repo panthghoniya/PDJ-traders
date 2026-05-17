@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
-import factory from '../../assets/factory.png';
+import { factory } from '../../assets/images';
 
 
 const GalleryHero = () => {

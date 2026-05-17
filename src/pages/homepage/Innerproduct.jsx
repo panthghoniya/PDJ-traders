@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Heart, Share2, Check } from 'lucide-react';
 import Navbar from '../../common components/layout/Navbar';
@@ -59,6 +60,34 @@ const Innerproduct = () => {
 
   return (
     <>
+      {/* Dynamic SEO per product */}
+      <Helmet>
+        <title>{product.name} | PDJ Trade Connect — Salt Manufacturer India</title>
+        <meta name="description" content={`Buy ${product.name} from PDJ Trade Connect — India's leading salt manufacturer and exporter. ${product.description?.slice(0, 120) || 'Premium quality, bulk export available worldwide.'}`} />
+        <meta name="keywords" content={`${product.name}, ${product.category} india, salt exporter india, buy ${product.name} bulk, PDJ trade connect`} />
+        <link rel="canonical" href={`https://pdjtrade.com/product/${product.id}`} />
+        <meta property="og:title" content={`${product.name} | PDJ Trade Connect`} />
+        <meta property="og:description" content={`${product.name} — premium quality salt from India. Bulk export available. ${product.description?.slice(0, 100) || ''}`} />
+        <meta property="og:image" content={product.images?.[0] || 'https://pdjtrade.com/og-image.jpg'} />
+        <meta property="og:url" content={`https://pdjtrade.com/product/${product.id}`} />
+        <meta property="og:type" content="product" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": product.name,
+          "description": product.description,
+          "sku": product.sku,
+          "image": product.images,
+          "brand": { "@type": "Brand", "name": "PDJ Trade Connect" },
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock",
+            "priceCurrency": "INR",
+            "seller": { "@type": "Organization", "name": "PDJ Trade Connect" }
+          }
+        })}</script>
+      </Helmet>
+
       <Navbar />
 
       {/* Page Content */}

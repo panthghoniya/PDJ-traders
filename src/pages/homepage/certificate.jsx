@@ -1,9 +1,7 @@
 import React from 'react';
 import { Award, ShieldCheck, CheckCircle, Globe, FileCheck } from 'lucide-react';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
-import iso from '../../assets/ISO logo image.png'
-import fssai from '../../assets/FSSAI logo image (1).png'
-import halal from '../../assets/HALAL logo image.png'
+import { isoLogo as iso, fssaiLogo as fssai, halalLogo as halal } from '../../assets/images';
 
 const certificates = [
   {
